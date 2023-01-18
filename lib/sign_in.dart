@@ -100,11 +100,17 @@ class _SignInState extends State<SignIn> {
                                 password: pswordcontroller.text)
                             .then((value) {
                           print("Successful");
-                          Navigator.pushReplacement(context, MaterialPageRoute(
+                          Navigator.pushAndRemoveUntil(context,
+                              MaterialPageRoute(
                             builder: (context) {
                               return HomeScreen();
                             },
-                          ));
+                          ), (route) => false);
+                          // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                          //   builder: (context) {
+                          //     return HomeScreen();
+                          //   }, (route) => false
+                          // ));
                         }).onError((error, stackTrace) {
                           print("Error:${error.toString()}");
                         });
