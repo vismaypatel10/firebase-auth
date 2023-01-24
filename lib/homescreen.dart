@@ -15,28 +15,52 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.maxFinite,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text('Hello'),
-            ElevatedButton(
-                onPressed: () async {
-                  await FirebaseAuth.instance.signOut().then((value) {
-                    Navigator.pushReplacement(context, MaterialPageRoute(
-                      builder: (context) {
-                        return SignIn();
-                      },
-                    ));
-                  });
-                  await GoogleSignIn().signOut();
-                },
-                child: Text('logout'))
-          ],
-        ),
+      appBar: AppBar(title: Text('HomePage')),
+      bottomNavigationBar: Container(
+        height: 50,
+        width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.all(16),
+        child: ElevatedButton(
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut().then((value) {
+                Navigator.pushReplacement(context, MaterialPageRoute(
+                  builder: (context) {
+                    return SignIn();
+                  },
+                ));
+              });
+              await GoogleSignIn().signOut();
+            },
+            child: Text('logout')),
       ),
+      // body: Container(
+      //   width: double.maxFinite,
+      //   child: Padding(
+      //     padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      //     child: Column(
+      //       mainAxisAlignment: MainAxisAlignment.center,
+      //       crossAxisAlignment: CrossAxisAlignment.center,
+      //       children: [
+      //         SizedBox(
+      //           height: 50,
+      //           width: MediaQuery.of(context).size.width,
+      //           child: ElevatedButton(
+      //               onPressed: () async {
+      //                 await FirebaseAuth.instance.signOut().then((value) {
+      //                   Navigator.pushReplacement(context, MaterialPageRoute(
+      //                     builder: (context) {
+      //                       return SignIn();
+      //                     },
+      //                   ));
+      //                 });
+      //                 await GoogleSignIn().signOut();
+      //               },
+      //               child: Text('logout')),
+      //         )
+      //       ],
+      //     ),
+      //   ),
+      // ),
     );
   }
 }

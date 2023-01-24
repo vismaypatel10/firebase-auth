@@ -112,6 +112,13 @@ class _SignInState extends State<SignIn> {
                           //   }, (route) => false
                           // ));
                         }).onError((error, stackTrace) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(
+                              'Please insert valid data',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            backgroundColor: Colors.red,
+                          ));
                           print("Error:${error.toString()}");
                         });
                       },
